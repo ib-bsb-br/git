@@ -1,0 +1,368 @@
+{
+  "name": "git",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "The main entity or core element of `git` data-model."
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string",
+              "description": "A sub-entity or element related to the parent's content."
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "A further sub-entity or element related to the parent's content."
+                  },
+                  "children": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "content": {
+                          "type": "string",
+                          "description": "An additional sub-entity or element at a deeper level."
+                        },
+                        "children": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "content": {
+                                "type": "string",
+                                "description": "A more deeply nested sub-entity or element."
+                              },
+                              "children": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "content": {
+                                      "type": "string",
+                                      "description": "The deepest sub-entity or element."
+                                    },
+                                    "children": {
+                                      "type": "array",
+                                      "items": {
+                                        "$ref": "#"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "content",
+                                    "children"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "content",
+                              "children"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "content",
+                        "children"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "content",
+                  "children"
+                ]
+              }
+            }
+          },
+          "required": [
+            "content",
+            "children"
+          ]
+        }
+      }
+    },
+    "required": [
+      "content",
+      "children"
+    ],
+    "content": "Git data model",
+    "children": [
+      {
+        "content": "Objects (immutable content-addressed data)",
+        "children": [
+          {
+            "content": "Object identity (hash ID, type, contents)",
+            "children": [
+              {
+                "content": "ID: cryptographic hash of type and contents",
+                "children": []
+              },
+              {
+                "content": "Type: commit, tree, blob, or tag object",
+                "children": []
+              },
+              {
+                "content": "Contents: structure depends on object type",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Commit",
+            "children": [
+              {
+                "content": "Tree ID of top-level directory",
+                "children": []
+              },
+              {
+                "content": "Parent commit ID(s)",
+                "children": []
+              },
+              {
+                "content": "Author and authored time",
+                "children": []
+              },
+              {
+                "content": "Committer and committed time",
+                "children": []
+              },
+              {
+                "content": "Commit message",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Tree (directory representation)",
+            "children": [
+              {
+                "content": "Tree entry: filename",
+                "children": []
+              },
+              {
+                "content": "Tree entry: file type",
+                "children": [
+                  {
+                    "content": "Regular file",
+                    "children": []
+                  },
+                  {
+                    "content": "Executable file",
+                    "children": []
+                  },
+                  {
+                    "content": "Symbolic link",
+                    "children": []
+                  },
+                  {
+                    "content": "Directory",
+                    "children": []
+                  },
+                  {
+                    "content": "Gitlink (submodule)",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "content": "Tree entry: object ID for file, directory, or gitlink",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Blob (file contents)",
+            "children": [
+              {
+                "content": "Stores full contents of a file",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Tag object",
+            "children": [
+              {
+                "content": "Referenced object ID",
+                "children": []
+              },
+              {
+                "content": "Referenced object type",
+                "children": []
+              },
+              {
+                "content": "Tagger and tag date",
+                "children": []
+              },
+              {
+                "content": "Tag message",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "References (names for commits and other objects)",
+        "children": [
+          {
+            "content": "Reference targets",
+            "children": [
+              {
+                "content": "Direct object ID (usually commit ID)",
+                "children": []
+              },
+              {
+                "content": "Symbolic reference to another ref",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Branches: refs/heads/<name>",
+            "children": [
+              {
+                "content": "Points to latest commit on the branch",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Tags: refs/tags/<name>",
+            "children": [
+              {
+                "content": "Annotated tag -> tag object ID",
+                "children": []
+              },
+              {
+                "content": "Lightweight tag -> commit/blob/tree ID",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "HEAD",
+            "children": [
+              {
+                "content": "Symbolic ref to current branch",
+                "children": []
+              },
+              {
+                "content": "Detached HEAD -> direct commit ID",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Remote-tracking branches: refs/remotes/<remote>/<branch>",
+            "children": [
+              {
+                "content": "Tracks last-known state of remote branch",
+                "children": []
+              },
+              {
+                "content": "refs/remotes/<remote>/HEAD -> remote default branch",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Other references",
+            "children": [
+              {
+                "content": "refs/stash, refs/bisect, refs/notes, etc",
+                "children": []
+              },
+              {
+                "content": "Top-level refs like ORIG_HEAD",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Reachability determines object retention",
+            "children": [
+              {
+                "content": "Objects reachable from refs or reflogs are kept",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Index (staging area)",
+        "children": [
+          {
+            "content": "Flat list of files staged for commit",
+            "children": []
+          },
+          {
+            "content": "Converted into a tree for new commits",
+            "children": []
+          },
+          {
+            "content": "Index entry fields",
+            "children": [
+              {
+                "content": "File type (regular, executable, symlink, gitlink)",
+                "children": []
+              },
+              {
+                "content": "Object ID (blob or commit for submodule)",
+                "children": []
+              },
+              {
+                "content": "Stage number (0-3 for merge conflict entries)",
+                "children": []
+              },
+              {
+                "content": "File path",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "content": "Reflogs (local ref change logs)",
+        "children": [
+          {
+            "content": "Log entries per reference update",
+            "children": [
+              {
+                "content": "Commit ID",
+                "children": []
+              },
+              {
+                "content": "Timestamp",
+                "children": []
+              },
+              {
+                "content": "Log message",
+                "children": []
+              }
+            ]
+          },
+          {
+            "content": "Reflogs are local-only and not shared with remotes",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}
